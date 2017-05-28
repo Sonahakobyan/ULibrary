@@ -36,6 +36,12 @@ namespace ULibrary
                     this.Close();
                 }
             }
+            else
+            {
+                MessageBox.Show("Username or Password is incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Username.Text = "";
+                Password.Text = "";
+            }
         }
     }
 }
