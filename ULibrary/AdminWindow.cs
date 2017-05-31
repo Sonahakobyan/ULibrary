@@ -14,7 +14,7 @@ namespace ULibrary
     {
         private int userID;
 
-        public AdminWindow(int userId)
+        public AdminWindow(int userID)
         {
             InitializeComponent();
             this.userID = userID;

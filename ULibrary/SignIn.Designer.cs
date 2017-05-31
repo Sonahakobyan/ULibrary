@@ -40,10 +40,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.signUpFName = new System.Windows.Forms.TextBox();
+            this.signUpLName = new System.Windows.Forms.TextBox();
+            this.signUpUsername = new System.Windows.Forms.TextBox();
+            this.signUpPassword = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.signInTab.SuspendLayout();
@@ -135,10 +135,10 @@
             // signUpTab
             // 
             this.signUpTab.Controls.Add(this.button2);
-            this.signUpTab.Controls.Add(this.textBox4);
-            this.signUpTab.Controls.Add(this.textBox3);
-            this.signUpTab.Controls.Add(this.textBox2);
-            this.signUpTab.Controls.Add(this.textBox1);
+            this.signUpTab.Controls.Add(this.signUpPassword);
+            this.signUpTab.Controls.Add(this.signUpUsername);
+            this.signUpTab.Controls.Add(this.signUpLName);
+            this.signUpTab.Controls.Add(this.signUpFName);
             this.signUpTab.Controls.Add(this.label6);
             this.signUpTab.Controls.Add(this.label5);
             this.signUpTab.Controls.Add(this.label4);
@@ -181,33 +181,34 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Password:";
             // 
-            // textBox1
+            // signUpFName
             // 
-            this.textBox1.Location = new System.Drawing.Point(136, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 20);
-            this.textBox1.TabIndex = 4;
+            this.signUpFName.Location = new System.Drawing.Point(136, 20);
+            this.signUpFName.Name = "signUpFName";
+            this.signUpFName.Size = new System.Drawing.Size(160, 20);
+            this.signUpFName.TabIndex = 4;
             // 
-            // textBox2
+            // signUpLName
             // 
-            this.textBox2.Location = new System.Drawing.Point(136, 60);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(160, 20);
-            this.textBox2.TabIndex = 5;
+            this.signUpLName.Location = new System.Drawing.Point(136, 60);
+            this.signUpLName.Name = "signUpLName";
+            this.signUpLName.Size = new System.Drawing.Size(160, 20);
+            this.signUpLName.TabIndex = 5;
             // 
-            // textBox3
+            // signUpUsername
             // 
-            this.textBox3.Location = new System.Drawing.Point(136, 100);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(160, 20);
-            this.textBox3.TabIndex = 6;
+            this.signUpUsername.Location = new System.Drawing.Point(136, 100);
+            this.signUpUsername.Name = "signUpUsername";
+            this.signUpUsername.Size = new System.Drawing.Size(160, 20);
+            this.signUpUsername.TabIndex = 6;
             // 
-            // textBox4
+            // signUpPassword
             // 
-            this.textBox4.Location = new System.Drawing.Point(136, 140);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(160, 20);
-            this.textBox4.TabIndex = 7;
+            this.signUpPassword.Location = new System.Drawing.Point(136, 140);
+            this.signUpPassword.Name = "signUpPassword";
+            this.signUpPassword.PasswordChar = '*';
+            this.signUpPassword.Size = new System.Drawing.Size(160, 20);
+            this.signUpPassword.TabIndex = 7;
             // 
             // button2
             // 
@@ -217,6 +218,7 @@
             this.button2.TabIndex = 8;
             this.button2.Text = "Sign Up";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // SignIn
             // 
@@ -228,6 +230,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "SignIn";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome To ULibrary";
             this.tabControl1.ResumeLayout(false);
             this.signInTab.ResumeLayout(false);
@@ -249,10 +252,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage signUpTab;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox signUpPassword;
+        private System.Windows.Forms.TextBox signUpUsername;
+        private System.Windows.Forms.TextBox signUpLName;
+        private System.Windows.Forms.TextBox signUpFName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

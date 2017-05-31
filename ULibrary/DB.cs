@@ -45,6 +45,82 @@ namespace ULibrary
             return null;
         }
 
+        public static bool Register(string FirstName, string LastName, string Username, string Password)
+        {
+            if (FirstName != "" && LastName != "" && Username != "" & Password != "" && db.IsConnect())
+            {
+                string query = "INSERT INTO `users`(`FirstName`, `LastName`, `Username`, `Password`, `Type`) VALUES(@FirstName, @LastName, @Username, @Password, 'User')";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@FirstName", FirstName);
+                    cmd.Parameters.AddWithValue("@LastName", LastName);
+                    cmd.Parameters.AddWithValue("@Username", Username);
+                    cmd.Parameters.AddWithValue("@Password", CalculateMD5Hash(Password));
+                    if (cmd.ExecuteNonQuery() != 0)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public static List<Book> GetAllBooks()
+        {
+            if(db.IsConnect())
+            {
+                List<Book> books = new List<Book>();
+                string query = "SELECT id,Title,Author,Genre FROM `books`";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            books.Add(new Book((string)reader["Title"], (string)reader["Author"], (string)reader["Genre"], reader.GetInt32(0)));
+                        }  
+                    }
+                }
+                return books;
+            }
+            return null;
+        }
+
+        public static List<Book> searchBooksBy(string searched, string searchby)
+        {
+            if (db.IsConnect())
+            {
+                string query = "";
+                switch (searchby)
+                {
+                    case "radioTitle":
+                        query = "SELECT id,Title,Author,Genre FROM `books` WHERE `Title` COLLATE UTF8_UNICODE_CI LIKE @searched";
+                        break;
+                    case "radioAuthor":
+                        query = "SELECT id,Title,Author,Genre FROM `books` WHERE `Author` COLLATE UTF8_UNICODE_CI LIKE @searched";
+                        break;
+                    case "radioGenre":
+                        query = "SELECT id,Title,Author,Genre FROM `books` WHERE `Genre` COLLATE UTF8_UNICODE_CI LIKE @searched";
+                        break;
+                    default:
+                        query = "SELECT id,Title,Author,Genre FROM `books` WHERE `Title` COLLATE UTF8_UNICODE_CI LIKE @searched";
+                        break;
+                }
+                List<Book> books = new List<Book>();
+                using (var cmd = new MySqlCommand(query,db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@searched","%"+searched+"%");
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            books.Add(new Book((string)reader["Title"], (string)reader["Author"], (string)reader["Genre"], reader.GetInt32(0)));
+                        }
+                    }
+                }
+                return books;
+            }
+            return null;
+        }
+
         private static string CalculateMD5Hash(string input)
         {
             // step 1, calculate MD5 hash from input
