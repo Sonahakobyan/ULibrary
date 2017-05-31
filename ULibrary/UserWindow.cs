@@ -31,7 +31,7 @@ namespace ULibrary
             booksGrid.Rows.Clear();
             foreach (var book in books)
             {
-                booksGrid.Rows.Add(book.Title, book.Author, book.Genre);
+                booksGrid.Rows.Add(book.ID, book.Title, book.Author, book.Genre);
             }
         }
 
@@ -39,7 +39,17 @@ namespace ULibrary
         {
             SearchWindow swin = new SearchWindow();
             swin.ShowDialog();
-            addBooksToGrid(DB.searchBooksBy(swin.SearchText, swin.RadioChecked));
+            addBooksToGrid(DB.SearchBooksBy(swin.SearchText, swin.RadioChecked));
+        }
+
+        private void booksGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                int id = (int)booksGrid.Rows[e.RowIndex].Cells[0].Value;
+                var book = DB.GetBookByID(id);
+                
+            }
         }
     }
 }

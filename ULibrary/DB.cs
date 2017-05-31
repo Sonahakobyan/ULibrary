@@ -84,7 +84,27 @@ namespace ULibrary
             return null;
         }
 
-        public static List<Book> searchBooksBy(string searched, string searchby)
+        public static Book GetBookByID(int id)
+        {
+            if (db.IsConnect())
+            {
+                string query = "SELECT * FROM `books` WHERE id=@id";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Book((string)reader["Title"], (string)reader["Author"], (string)reader["Genre"], reader.GetInt32(0), (string)reader["Description"]);
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static List<Book> SearchBooksBy(string searched, string searchby)
         {
             if (db.IsConnect())
             {
