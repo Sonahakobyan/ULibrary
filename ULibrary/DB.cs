@@ -56,7 +56,7 @@ namespace ULibrary
                     cmd.Parameters.AddWithValue("@LastName", LastName);
                     cmd.Parameters.AddWithValue("@Username", Username);
                     cmd.Parameters.AddWithValue("@Password", CalculateMD5Hash(Password));
-                    if (cmd.ExecuteNonQuery() != 0)
+                    if (cmd.ExecuteNonQuery() >= 1)
                         return true;
                 }
             }
@@ -167,15 +167,36 @@ namespace ULibrary
                 string query = "SELECT * FROM `user_books` WHERE user_id=@userid AND book_id=@bookid AND is_return=0";
                 using (var cmd = new MySqlCommand(query,db.Connection))
                 {
+                    cmd.Parameters.AddWithValue("@userid",userID);
+                    cmd.Parameters.AddWithValue("@bookid",bookID);
                     using (var reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            return new UserBook();
+                            return new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], (int)reader.GetInt32("is_return"));
                         }
                     }
                 }
             }
+            return null;
+        }
+
+        public static bool BorrowBook(UserBook book)
+        {
+            if (db.IsConnect())
+            {
+                string query = "INSERT INTO `user_books`(`user_id`, `book_id`, `start_date`, `end_date`,`is_return`) VALUES(@UserID, @BookID, @StartDate, @EndDate, 0)";
+                using (var cmd = new MySqlCommand(query,db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", book.UserID);
+                    cmd.Parameters.AddWithValue("@BookID", book.BookID);
+                    cmd.Parameters.AddWithValue("@StartDate", book.StartDate);
+                    cmd.Parameters.AddWithValue("@EndDate", book.EndDate);
+                    if (cmd.ExecuteNonQuery() >= 1)
+                        return true;
+                }
+            }
+            return false;
         }
         
 
