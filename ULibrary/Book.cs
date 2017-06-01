@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ULibrary
 {
-    class Book
+    public class Book
     {
         public int ID { get; }
         public string Title { get; set; }

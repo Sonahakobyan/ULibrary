@@ -141,6 +141,44 @@ namespace ULibrary
             return null;
         }
 
+        public static User GetUserByID(int id)
+        {
+            if (db.IsConnect())
+            {
+                string query = "SELECT * FROM `users` WHERE id=@id";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User((string)reader["FirstName"], (string)reader["LastName"], (string)reader["Username"], (string)reader["Password"], (string)reader["Type"],reader.GetInt32(0), (uint)reader.GetInt32("Debt"));
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        public static UserBook GetNotReturnedUserBook(int userID, int bookID)
+        {
+            if (db.IsConnect())
+            {
+                string query = "SELECT * FROM `user_books` WHERE user_id=@userid AND book_id=@bookid AND is_return=0";
+                using (var cmd = new MySqlCommand(query,db.Connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new UserBook();
+                        }
+                    }
+                }
+            }
+        }
+        
+
         private static string CalculateMD5Hash(string input)
         {
             // step 1, calculate MD5 hash from input

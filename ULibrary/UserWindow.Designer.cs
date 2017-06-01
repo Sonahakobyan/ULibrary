@@ -33,12 +33,12 @@
             this.booksTab = new System.Windows.Forms.TabPage();
             this.SearchButton = new System.Windows.Forms.Button();
             this.booksGrid = new System.Windows.Forms.DataGridView();
-            this.takenTab = new System.Windows.Forms.TabPage();
-            this.historyTab = new System.Windows.Forms.TabPage();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.authorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.takenTab = new System.Windows.Forms.TabPage();
+            this.historyTab = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.booksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.booksGrid)).BeginInit();
@@ -51,9 +51,10 @@
             this.tabControl1.Controls.Add(this.historyTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(840, 516);
+            this.tabControl1.Size = new System.Drawing.Size(1260, 794);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
@@ -61,10 +62,11 @@
             // 
             this.booksTab.Controls.Add(this.SearchButton);
             this.booksTab.Controls.Add(this.booksGrid);
-            this.booksTab.Location = new System.Drawing.Point(4, 22);
+            this.booksTab.Location = new System.Drawing.Point(4, 29);
+            this.booksTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.booksTab.Name = "booksTab";
-            this.booksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.booksTab.Size = new System.Drawing.Size(832, 490);
+            this.booksTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.booksTab.Size = new System.Drawing.Size(1252, 761);
             this.booksTab.TabIndex = 0;
             this.booksTab.Text = "Books";
             this.booksTab.UseVisualStyleBackColor = true;
@@ -72,9 +74,10 @@
             // SearchButton
             // 
             this.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SearchButton.Location = new System.Drawing.Point(737, 3);
+            this.SearchButton.Location = new System.Drawing.Point(1106, 5);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(92, 29);
+            this.SearchButton.Size = new System.Drawing.Size(138, 37);
             this.SearchButton.TabIndex = 1;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -100,34 +103,16 @@
             this.authorColumn,
             this.genreColumn});
             this.booksGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.booksGrid.Location = new System.Drawing.Point(3, 3);
+            this.booksGrid.Location = new System.Drawing.Point(4, 5);
+            this.booksGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.booksGrid.MultiSelect = false;
             this.booksGrid.Name = "booksGrid";
             this.booksGrid.ReadOnly = true;
             this.booksGrid.RowHeadersVisible = false;
             this.booksGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.booksGrid.Size = new System.Drawing.Size(826, 484);
+            this.booksGrid.Size = new System.Drawing.Size(1244, 751);
             this.booksGrid.TabIndex = 0;
             this.booksGrid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.booksGrid_CellMouseDoubleClick);
-            // 
-            // takenTab
-            // 
-            this.takenTab.Location = new System.Drawing.Point(4, 22);
-            this.takenTab.Name = "takenTab";
-            this.takenTab.Padding = new System.Windows.Forms.Padding(3);
-            this.takenTab.Size = new System.Drawing.Size(832, 490);
-            this.takenTab.TabIndex = 1;
-            this.takenTab.Text = "Taken Books";
-            this.takenTab.UseVisualStyleBackColor = true;
-            // 
-            // historyTab
-            // 
-            this.historyTab.Location = new System.Drawing.Point(4, 22);
-            this.historyTab.Name = "historyTab";
-            this.historyTab.Size = new System.Drawing.Size(832, 490);
-            this.historyTab.TabIndex = 2;
-            this.historyTab.Text = "History";
-            this.historyTab.UseVisualStyleBackColor = true;
             // 
             // Id
             // 
@@ -142,7 +127,7 @@
             this.titleColumn.HeaderText = "Title";
             this.titleColumn.Name = "titleColumn";
             this.titleColumn.ReadOnly = true;
-            this.titleColumn.Width = 66;
+            this.titleColumn.Width = 97;
             // 
             // authorColumn
             // 
@@ -150,7 +135,7 @@
             this.authorColumn.HeaderText = "Author";
             this.authorColumn.Name = "authorColumn";
             this.authorColumn.ReadOnly = true;
-            this.authorColumn.Width = 83;
+            this.authorColumn.Width = 123;
             // 
             // genreColumn
             // 
@@ -159,12 +144,34 @@
             this.genreColumn.Name = "genreColumn";
             this.genreColumn.ReadOnly = true;
             // 
+            // takenTab
+            // 
+            this.takenTab.Location = new System.Drawing.Point(4, 29);
+            this.takenTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.takenTab.Name = "takenTab";
+            this.takenTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.takenTab.Size = new System.Drawing.Size(1252, 761);
+            this.takenTab.TabIndex = 1;
+            this.takenTab.Text = "Taken Books";
+            this.takenTab.UseVisualStyleBackColor = true;
+            // 
+            // historyTab
+            // 
+            this.historyTab.Location = new System.Drawing.Point(4, 29);
+            this.historyTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.historyTab.Name = "historyTab";
+            this.historyTab.Size = new System.Drawing.Size(1252, 761);
+            this.historyTab.TabIndex = 2;
+            this.historyTab.Text = "History";
+            this.historyTab.UseVisualStyleBackColor = true;
+            // 
             // UserWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 516);
+            this.ClientSize = new System.Drawing.Size(1260, 794);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UserWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ULibrary";

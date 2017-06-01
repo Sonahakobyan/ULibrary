@@ -48,7 +48,8 @@ namespace ULibrary
             {
                 int id = (int)booksGrid.Rows[e.RowIndex].Cells[0].Value;
                 var book = DB.GetBookByID(id);
-                
+                BookWindow bwin = new BookWindow(userID, book);
+                bwin.ShowDialog();
             }
         }
     }
