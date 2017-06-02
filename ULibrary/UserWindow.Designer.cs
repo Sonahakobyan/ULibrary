@@ -40,18 +40,26 @@
             this.genreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.takenTab = new System.Windows.Forms.TabPage();
             this.takenBooksGrid = new System.Windows.Forms.DataGridView();
-            this.historyTab = new System.Windows.Forms.TabPage();
             this.takenIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.takenTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.takenAuthorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startdateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.enddateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.debtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.historyTab = new System.Windows.Forms.TabPage();
+            this.historyGrid = new System.Windows.Forms.DataGridView();
+            this.hID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hAuthor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hReturnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.booksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.booksGrid)).BeginInit();
             this.takenTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.takenBooksGrid)).BeginInit();
+            this.historyTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.historyGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -193,15 +201,6 @@
             this.takenBooksGrid.TabIndex = 0;
             this.takenBooksGrid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.takenBooksGrid_CellMouseDoubleClick);
             // 
-            // historyTab
-            // 
-            this.historyTab.Location = new System.Drawing.Point(4, 22);
-            this.historyTab.Name = "historyTab";
-            this.historyTab.Size = new System.Drawing.Size(832, 450);
-            this.historyTab.TabIndex = 2;
-            this.historyTab.Text = "History";
-            this.historyTab.UseVisualStyleBackColor = true;
-            // 
             // takenIDColumn
             // 
             this.takenIDColumn.HeaderText = "ID";
@@ -231,7 +230,7 @@
             this.startdateColumn.HeaderText = "Start Date";
             this.startdateColumn.Name = "startdateColumn";
             this.startdateColumn.ReadOnly = true;
-            this.startdateColumn.Width = 111;
+            this.startdateColumn.Width = 102;
             // 
             // enddateColumn
             // 
@@ -239,7 +238,7 @@
             this.enddateColumn.HeaderText = "End Date";
             this.enddateColumn.Name = "enddateColumn";
             this.enddateColumn.ReadOnly = true;
-            this.enddateColumn.Width = 104;
+            this.enddateColumn.Width = 96;
             // 
             // debtColumn
             // 
@@ -247,6 +246,67 @@
             this.debtColumn.HeaderText = "Debt";
             this.debtColumn.Name = "debtColumn";
             this.debtColumn.ReadOnly = true;
+            // 
+            // historyTab
+            // 
+            this.historyTab.Controls.Add(this.historyGrid);
+            this.historyTab.Location = new System.Drawing.Point(4, 22);
+            this.historyTab.Name = "historyTab";
+            this.historyTab.Size = new System.Drawing.Size(832, 450);
+            this.historyTab.TabIndex = 2;
+            this.historyTab.Text = "History";
+            this.historyTab.UseVisualStyleBackColor = true;
+            // 
+            // historyGrid
+            // 
+            this.historyGrid.AllowUserToAddRows = false;
+            this.historyGrid.AllowUserToDeleteRows = false;
+            this.historyGrid.AllowUserToResizeColumns = false;
+            this.historyGrid.AllowUserToResizeRows = false;
+            this.historyGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.historyGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.historyGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.hID,
+            this.hTitle,
+            this.hAuthor,
+            this.hStartDate,
+            this.hReturnDate});
+            this.historyGrid.Location = new System.Drawing.Point(0, 0);
+            this.historyGrid.Name = "historyGrid";
+            this.historyGrid.RowHeadersVisible = false;
+            this.historyGrid.Size = new System.Drawing.Size(785, 313);
+            this.historyGrid.TabIndex = 0;
+            // 
+            // hID
+            // 
+            this.hID.HeaderText = "ID";
+            this.hID.Name = "hID";
+            this.hID.ReadOnly = true;
+            this.hID.Visible = false;
+            // 
+            // hTitle
+            // 
+            this.hTitle.HeaderText = "Title";
+            this.hTitle.Name = "hTitle";
+            this.hTitle.ReadOnly = true;
+            // 
+            // hAuthor
+            // 
+            this.hAuthor.HeaderText = "Author";
+            this.hAuthor.Name = "hAuthor";
+            this.hAuthor.ReadOnly = true;
+            // 
+            // hStartDate
+            // 
+            this.hStartDate.HeaderText = "Start Date";
+            this.hStartDate.Name = "hStartDate";
+            this.hStartDate.ReadOnly = true;
+            // 
+            // hReturnDate
+            // 
+            this.hReturnDate.HeaderText = "Return Date";
+            this.hReturnDate.Name = "hReturnDate";
+            this.hReturnDate.ReadOnly = true;
             // 
             // UserWindow
             // 
@@ -262,6 +322,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.booksGrid)).EndInit();
             this.takenTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.takenBooksGrid)).EndInit();
+            this.historyTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.historyGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,5 +347,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn startdateColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn enddateColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn debtColumn;
+        private System.Windows.Forms.DataGridView historyGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hAuthor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hStartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hReturnDate;
     }
 }

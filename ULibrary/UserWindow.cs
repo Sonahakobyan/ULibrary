@@ -77,8 +77,6 @@ namespace ULibrary
             takenBooksGrid.Rows.Clear();
             foreach (var userbook in userbooks)
             {
-                if (userbook.ReturnDate == null)
-                {
                     Book book = DB.GetBookByID(userbook.BookID);
 
 
@@ -86,14 +84,12 @@ namespace ULibrary
                     var row = takenBooksGrid.Rows[index];
                     if((DateTime.Today - userbook.EndDate).Days >= 0)
                     {
-                        row.DefaultCellStyle.BackColor = Color.Yellow;
+                        row.DefaultCellStyle.BackColor = Color.Red;
                     }
                     else if ((userbook.EndDate - DateTime.Today).Days <= 3)
                     {
                         row.DefaultCellStyle.BackColor = Color.Yellow;
                     }
-
-                }
             }
         }
 
@@ -102,11 +98,15 @@ namespace ULibrary
             var tb = sender as TabControl;
             if(tb.SelectedTab == takenTab)
             {
-                    addBooksToTakenBooksGrid(DB.GetNotReturnedUserBooks(user.ID));
+                addBooksToTakenBooksGrid(DB.GetNotReturnedUserBooks(user.ID));
             }
             else if(tb.SelectedTab == booksTab)
             {
                 addBooksToGrid(DB.GetAllBooks());
+            }
+            else if (tb.SelectedTab == historyTab)
+            {
+                addBooksToHistoryGrid(DB.GetReturnedUserBooks(user.ID));
             }
         }
 
@@ -118,6 +118,15 @@ namespace ULibrary
                 var book = DB.GetBookByID(id);
                 BookWindow bwin = new BookWindow(user, book);
                 bwin.ShowDialog();
+            }
+        }
+        private void addBooksToHistoryGrid(List<UserBook> userbooks)
+        {
+            historyGrid.Rows.Clear();
+            foreach (var userbook in userbooks)
+            {
+                Book book = DB.GetBookByID(userbook.BookID);
+                historyGrid.Rows.Add(userbook.ID, book.Title, book.Author, userbook.StartDate.ToString("dd-MM-yyyy"), userbook.ReturnDate.Value.ToString("dd-MM-yyyy"));
             }
         }
     }

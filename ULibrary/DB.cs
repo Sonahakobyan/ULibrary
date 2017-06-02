@@ -153,6 +153,7 @@ namespace ULibrary
             }
             return null;
         }
+
         public static UserBook GetNotReturnedUserBook(int userID, int bookID)
         {
             if (db.IsConnect())
@@ -181,6 +182,29 @@ namespace ULibrary
             {
                 List<UserBook> userbooks = new List<UserBook>();
                 string query = "SELECT * FROM `user_books` WHERE user_id=@userid AND return_date IS NULL";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@userid", userID);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime? return_date = reader["return_date"] as DateTime?;
+                            userbooks.Add(new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date));
+                        }
+                    }
+                }
+                return userbooks;
+            }
+            return null;
+        }
+
+        public static List<UserBook> GetReturnedUserBooks(int userID)
+        {
+            if (db.IsConnect())
+            {
+                List<UserBook> userbooks = new List<UserBook>();
+                string query = "SELECT * FROM `user_books` WHERE user_id=@userid AND return_date IS NOT NULL";
                 using (var cmd = new MySqlCommand(query, db.Connection))
                 {
                     cmd.Parameters.AddWithValue("@userid", userID);
@@ -235,7 +259,6 @@ namespace ULibrary
             }
             return false;
         }
-        
 
         private static string CalculateMD5Hash(string input)
         {
