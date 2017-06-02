@@ -13,7 +13,7 @@ namespace ULibrary
         public int BookID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int IsReturn { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         public User User
         {
@@ -31,14 +31,14 @@ namespace ULibrary
             }
         }
 
-        public UserBook(int userId,int bookId,DateTime startDate,DateTime endDate,int isReturn,int id = 0)
+        public UserBook(int userId, int bookId, DateTime startDate, DateTime endDate, DateTime? returnDate,int id = 0)
         {
             ID = id;
             UserID = userId;
             BookID = bookId;
             StartDate = startDate;
             EndDate = endDate;
-            IsReturn = isReturn;
+            ReturnDate = returnDate;
         }
     }
 }

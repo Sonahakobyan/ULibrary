@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ULibrary
 {
-    class User
+    public class User
     {
         public int ID { get; }
         public string FirstName { get; set; }
@@ -36,6 +36,11 @@ namespace ULibrary
             Type = type;
             Debt = debt;
             ID = id;
+        }
+
+        public bool Update()
+        {
+            return DB.UpdateUser(this);
         }
     }
 }

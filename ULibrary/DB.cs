@@ -16,11 +16,11 @@ namespace ULibrary
             db = DBConnection.Instance;
         }
 
-        public static ArrayList Login(string username, string password)
+        public static User Login(string username, string password)
         {
             if (db.IsConnect())
             {
-                string query = "SELECT id,FirstName,LastName,Type FROM users WHERE username=@username and password=@password";
+                string query = "SELECT id,FirstName,LastName,Username,Password,Type,Debt FROM users WHERE username=@username and password=@password";
                 using (var cmd = new MySqlCommand(query, db.Connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
@@ -29,14 +29,7 @@ namespace ULibrary
                     {
                         if (reader.Read())
                         {
-                            ArrayList user = new ArrayList
-                            {
-                                reader.GetInt32(0),
-                                reader["FirstName"],
-                                reader["LastName"],
-                                reader["Type"]
-                            };
-                            return user;
+                            return new User((string)reader["FirstName"], (string)reader["LastName"], (string)reader["username"], (string)reader["password"], (string)reader["Type"], reader.GetInt32("id"), (uint)reader.GetInt32("Debt"));
                         }
 
                     }
@@ -164,7 +157,7 @@ namespace ULibrary
         {
             if (db.IsConnect())
             {
-                string query = "SELECT * FROM `user_books` WHERE user_id=@userid AND book_id=@bookid AND is_return=0";
+                string query = "SELECT * FROM `user_books` WHERE user_id=@userid AND book_id=@bookid AND return_date IS NULL";
                 using (var cmd = new MySqlCommand(query,db.Connection))
                 {
                     cmd.Parameters.AddWithValue("@userid",userID);
@@ -173,7 +166,8 @@ namespace ULibrary
                     {
                         if (reader.Read())
                         {
-                            return new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], (int)reader.GetInt32("is_return"));
+                            DateTime? return_date = reader["return_date"] as DateTime?;
+                            return new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date);
                         }
                     }
                 }
@@ -181,11 +175,54 @@ namespace ULibrary
             return null;
         }
 
+        public static List<UserBook> GetNotReturnedUserBooks(int userID)
+        {
+            if (db.IsConnect())
+            {
+                List<UserBook> userbooks = new List<UserBook>();
+                string query = "SELECT * FROM `user_books` WHERE user_id=@userid AND return_date IS NULL";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@userid", userID);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime? return_date = reader["return_date"] as DateTime?;
+                            userbooks.Add(new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date));
+                        }
+                    }
+                }
+                return userbooks;
+            }
+            return null;
+        }
+
+        public static bool UpdateUser(User user)
+        {
+            if (db.IsConnect())
+            {
+                string query = "UPDATE `users` SET FirstName=@firstname, LastName=@lastname, Type=@type, Debt=@debt WHERE id=@id";
+                using (var cmd = new MySqlCommand(query,db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@firstname", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastname", user.LastName);
+                    cmd.Parameters.AddWithValue("@type", user.Type);
+                    cmd.Parameters.AddWithValue("@debt", user.Debt);
+                    cmd.Parameters.AddWithValue("@id", user.ID);
+                    if (cmd.ExecuteNonQuery() >= 1)
+                        return true;
+                }
+            }
+            return false;
+
+        }
+
         public static bool BorrowBook(UserBook book)
         {
             if (db.IsConnect())
             {
-                string query = "INSERT INTO `user_books`(`user_id`, `book_id`, `start_date`, `end_date`,`is_return`) VALUES(@UserID, @BookID, @StartDate, @EndDate, 0)";
+                string query = "INSERT INTO `user_books`(`user_id`, `book_id`, `start_date`, `end_date`,`return_date`) VALUES(@UserID, @BookID, @StartDate, @EndDate, NULL)";
                 using (var cmd = new MySqlCommand(query,db.Connection))
                 {
                     cmd.Parameters.AddWithValue("@UserID", book.UserID);

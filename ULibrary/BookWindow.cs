@@ -16,16 +16,16 @@ namespace ULibrary
         private User user;
         private Book book;
 
-        public BookWindow(int userId, Book book)
+        public BookWindow(User user, Book book)
         {
             InitializeComponent();
             this.titleLabel.Text = book.Title;
             this.authorLabel.Text = book.Author;
             this.genreLabel.Text = book.Genre;
             this.descriptionLabel.Text = book.Description;
-            this.user = DB.GetUserByID(userId);
+            this.user = user;
             this.book = book;
-            UserBook user_book = DB.GetNotReturnedUserBook(userId, book.ID);
+            UserBook user_book = DB.GetNotReturnedUserBook(user.ID, book.ID);
             if (user_book != null)
             {
                 this.debtLabel.Text = String.Format("You have already borrowed this book from {0} to {1}", user_book.StartDate.ToString("dd-MM-yyyy"), user_book.EndDate.ToString("dd-MM-yyyy"));
@@ -53,7 +53,7 @@ namespace ULibrary
         {
             var start_time = DateTime.Today;
             var end_time = this.end_dateTime.Value;
-            var book = new UserBook(this.user.ID, this.book.ID, start_time, end_time, 0);
+            var book = new UserBook(this.user.ID, this.book.ID, start_time, end_time, null);
             if (DB.BorrowBook(book))
             {
                 this.borrowButton.Enabled = false;

@@ -12,12 +12,13 @@ namespace ULibrary
 {
     public partial class UserWindow : Form
     {
-        private int userID;
+        private User user;
 
-        public UserWindow(int userID)
+        public UserWindow(User user)
         {
             InitializeComponent();
-            this.userID = userID;
+            this.user = user;
+            this.user.Debt = CalculateDebt(this.user);
             addBooksToGrid(DB.GetAllBooks());
         }
 
@@ -48,9 +49,24 @@ namespace ULibrary
             {
                 int id = (int)booksGrid.Rows[e.RowIndex].Cells[0].Value;
                 var book = DB.GetBookByID(id);
-                BookWindow bwin = new BookWindow(userID, book);
+                BookWindow bwin = new BookWindow(user, book);
                 bwin.ShowDialog();
             }
+        }
+
+        private uint CalculateDebt(User user)
+        {
+            var userbooks = DB.GetNotReturnedUserBooks(user.ID);
+            uint debt = 0;
+            foreach (var userbook in userbooks)
+            {
+                if (DateTime.Today.CompareTo(userbook.EndDate) > 0)
+                {
+                    debt += (uint)(DateTime.Today - userbook.EndDate).Days * 100;
+                }
+
+            }
+            return debt;
         }
     }
 }

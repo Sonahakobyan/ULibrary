@@ -12,12 +12,12 @@ namespace ULibrary
 {
     public partial class AdminWindow : Form
     {
-        private int userID;
+        private User user;
 
-        public AdminWindow(int userID)
+        public AdminWindow(User user)
         {
             InitializeComponent();
-            this.userID = userID;
+            this.user = user;
         }
     }
 }

@@ -22,17 +22,18 @@ namespace ULibrary
             var user = DB.Login(this.Username.Text.Trim(), this.Password.Text.Trim());
             if(user != null)
             {
-                MessageBox.Show(string.Format("Hello {0} {1}", user[1], user[2]), "Successfull", MessageBoxButtons.OK);
-                if((string)user[3] == "Admin")
+                
+                MessageBox.Show(string.Format("Hello {0} {1}", user.FirstName, user.LastName), "Successfull", MessageBoxButtons.OK);
+                if((string)user.Type == "Admin")
                 {
-                    AdminWindow win = new AdminWindow((int)user[0]);
+                    AdminWindow win = new AdminWindow(user);
                     this.Hide();
                     win.ShowDialog();
                     this.Close();
                 }
                 else
                 {
-                    UserWindow win = new UserWindow((int)user[0]);
+                    UserWindow win = new UserWindow(user);
                     this.Hide();
                     win.ShowDialog();
                     this.Close();
