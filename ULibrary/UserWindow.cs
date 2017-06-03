@@ -156,7 +156,7 @@ namespace ULibrary
                         {
                             user.Money -= value;
                             user.Debt -= value;
-                            if (DB.AddToDebt(user.Debt) == null)
+                            if (DB.AddToDebt(value) == null)
                             {
                                 MessageBox.Show("Something went wrong.", "Error");
                                 return;
