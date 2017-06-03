@@ -23,7 +23,7 @@ namespace ULibrary
             if(user != null)
             {
                 
-                MessageBox.Show(string.Format("Hello {0} {1} {2}", user.FirstName, user.LastName, user.Debt), "Successfull", MessageBoxButtons.OK);
+                MessageBox.Show(string.Format("Hello {0} {1}", user.FirstName, user.LastName), "Successfull", MessageBoxButtons.OK);
                 if((string)user.Type == "Admin")
                 {
                     AdminWindow win = new AdminWindow(user);
