@@ -14,6 +14,7 @@ namespace ULibrary
         public string Username { get; set; }
         public string Type { get; set; }
         public uint Debt { get; set; }
+        public uint Money { get; set; }
         private string _password;
         public string Password
         {
@@ -27,7 +28,7 @@ namespace ULibrary
             }
         }
 
-        public User(string firstName,string lastName,string username,string password, string type, int id = 0 ,uint debt = 0)
+        public User(string firstName,string lastName,string username,string password, string type, int id = 0 , uint debt = 0, uint money = 0)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -35,6 +36,7 @@ namespace ULibrary
             Password = password;
             Type = type;
             Debt = debt;
+            Money = money;
             ID = id;
         }
 

@@ -213,7 +213,7 @@ namespace ULibrary
                         while (reader.Read())
                         {
                             DateTime? return_date = reader["return_date"] as DateTime?;
-                            userbooks.Add(new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date));
+                            userbooks.Add(new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date, (int)reader.GetInt32(0)));
                         }
                     }
                 }

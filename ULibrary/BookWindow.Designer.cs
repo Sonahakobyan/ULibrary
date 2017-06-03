@@ -40,6 +40,7 @@
             this.borrowButton = new System.Windows.Forms.Button();
             this.debtLabel = new System.Windows.Forms.Label();
             this.end_dateTime = new System.Windows.Forms.DateTimePicker();
+            this.returnButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -161,11 +162,24 @@
             this.end_dateTime.TabIndex = 11;
             this.end_dateTime.Visible = false;
             // 
+            // returnButton
+            // 
+            this.returnButton.AutoSize = true;
+            this.returnButton.Location = new System.Drawing.Point(227, 271);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(89, 28);
+            this.returnButton.TabIndex = 12;
+            this.returnButton.Text = "Return";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Visible = false;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            // 
             // BookWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 482);
+            this.Controls.Add(this.returnButton);
             this.Controls.Add(this.end_dateTime);
             this.Controls.Add(this.debtLabel);
             this.Controls.Add(this.borrowButton);
@@ -202,5 +216,6 @@
         private System.Windows.Forms.Button borrowButton;
         private System.Windows.Forms.Label debtLabel;
         private System.Windows.Forms.DateTimePicker end_dateTime;
+        private System.Windows.Forms.Button returnButton;
     }
 }

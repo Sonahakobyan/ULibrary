@@ -53,6 +53,15 @@
             this.hAuthor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hReturnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paymentsTab = new System.Windows.Forms.TabPage();
+            this.addTextBox = new System.Windows.Forms.TextBox();
+            this.payTextBox = new System.Windows.Forms.TextBox();
+            this.addButton = new System.Windows.Forms.Button();
+            this.payButton = new System.Windows.Forms.Button();
+            this.debt = new System.Windows.Forms.Label();
+            this.debtLab = new System.Windows.Forms.Label();
+            this.money = new System.Windows.Forms.Label();
+            this.moneyLab = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.booksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.booksGrid)).BeginInit();
@@ -60,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.takenBooksGrid)).BeginInit();
             this.historyTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.historyGrid)).BeginInit();
+            this.paymentsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -67,6 +77,7 @@
             this.tabControl1.Controls.Add(this.booksTab);
             this.tabControl1.Controls.Add(this.takenTab);
             this.tabControl1.Controls.Add(this.historyTab);
+            this.tabControl1.Controls.Add(this.paymentsTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -308,6 +319,95 @@
             this.hReturnDate.Name = "hReturnDate";
             this.hReturnDate.ReadOnly = true;
             // 
+            // paymentsTab
+            // 
+            this.paymentsTab.Controls.Add(this.addTextBox);
+            this.paymentsTab.Controls.Add(this.payTextBox);
+            this.paymentsTab.Controls.Add(this.addButton);
+            this.paymentsTab.Controls.Add(this.payButton);
+            this.paymentsTab.Controls.Add(this.debt);
+            this.paymentsTab.Controls.Add(this.debtLab);
+            this.paymentsTab.Controls.Add(this.money);
+            this.paymentsTab.Controls.Add(this.moneyLab);
+            this.paymentsTab.Location = new System.Drawing.Point(4, 22);
+            this.paymentsTab.Name = "paymentsTab";
+            this.paymentsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.paymentsTab.Size = new System.Drawing.Size(832, 450);
+            this.paymentsTab.TabIndex = 3;
+            this.paymentsTab.Text = "Payments";
+            this.paymentsTab.UseVisualStyleBackColor = true;
+            // 
+            // addTextBox
+            // 
+            this.addTextBox.Location = new System.Drawing.Point(8, 128);
+            this.addTextBox.Name = "addTextBox";
+            this.addTextBox.Size = new System.Drawing.Size(83, 20);
+            this.addTextBox.TabIndex = 7;
+            // 
+            // payTextBox
+            // 
+            this.payTextBox.Location = new System.Drawing.Point(8, 88);
+            this.payTextBox.Name = "payTextBox";
+            this.payTextBox.Size = new System.Drawing.Size(83, 20);
+            this.payTextBox.TabIndex = 6;
+            this.payTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.payTextBox_KeyPress);
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(97, 126);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(62, 23);
+            this.addButton.TabIndex = 5;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // payButton
+            // 
+            this.payButton.Location = new System.Drawing.Point(97, 86);
+            this.payButton.Name = "payButton";
+            this.payButton.Size = new System.Drawing.Size(62, 23);
+            this.payButton.TabIndex = 4;
+            this.payButton.Text = "Pay";
+            this.payButton.UseVisualStyleBackColor = true;
+            this.payButton.Click += new System.EventHandler(this.payButton_Click);
+            // 
+            // debt
+            // 
+            this.debt.AutoSize = true;
+            this.debt.Location = new System.Drawing.Point(114, 49);
+            this.debt.Name = "debt";
+            this.debt.Size = new System.Drawing.Size(13, 13);
+            this.debt.TabIndex = 3;
+            this.debt.Text = "0";
+            // 
+            // debtLab
+            // 
+            this.debtLab.AutoSize = true;
+            this.debtLab.Location = new System.Drawing.Point(19, 49);
+            this.debtLab.Name = "debtLab";
+            this.debtLab.Size = new System.Drawing.Size(79, 13);
+            this.debtLab.TabIndex = 2;
+            this.debtLab.Text = "Your total debt:";
+            // 
+            // money
+            // 
+            this.money.AutoSize = true;
+            this.money.Location = new System.Drawing.Point(114, 23);
+            this.money.Name = "money";
+            this.money.Size = new System.Drawing.Size(13, 13);
+            this.money.TabIndex = 1;
+            this.money.Text = "0";
+            // 
+            // moneyLab
+            // 
+            this.moneyLab.AutoSize = true;
+            this.moneyLab.Location = new System.Drawing.Point(19, 23);
+            this.moneyLab.Name = "moneyLab";
+            this.moneyLab.Size = new System.Drawing.Size(89, 13);
+            this.moneyLab.TabIndex = 0;
+            this.moneyLab.Text = "Your total money:";
+            // 
             // UserWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +424,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.takenBooksGrid)).EndInit();
             this.historyTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.historyGrid)).EndInit();
+            this.paymentsTab.ResumeLayout(false);
+            this.paymentsTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -353,5 +455,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hAuthor;
         private System.Windows.Forms.DataGridViewTextBoxColumn hStartDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn hReturnDate;
+        private System.Windows.Forms.TabPage paymentsTab;
+        private System.Windows.Forms.Label debt;
+        private System.Windows.Forms.Label debtLab;
+        private System.Windows.Forms.Label money;
+        private System.Windows.Forms.Label moneyLab;
+        private System.Windows.Forms.TextBox addTextBox;
+        private System.Windows.Forms.TextBox payTextBox;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button payButton;
     }
 }

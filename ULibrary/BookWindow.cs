@@ -26,9 +26,11 @@ namespace ULibrary
             this.user = user;
             this.book = book;
             UserBook user_book = DB.GetNotReturnedUserBook(user.ID, book.ID);
+
             if (user_book != null)
             {
                 this.debtLabel.Text = String.Format("You have already borrowed this book from {0} to {1}", user_book.StartDate.ToString("dd-MM-yyyy"), user_book.EndDate.ToString("dd-MM-yyyy"));
+                returnButton.Visible = true;
             }
             else
             {
@@ -45,7 +47,6 @@ namespace ULibrary
                     this.debtLabel.Text = "You have to pay your debt";
                 }
             }
-            
         }
 
         
@@ -63,5 +64,10 @@ namespace ULibrary
                 MessageBox.Show("Error!");
         }
 
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            DB.GetNotReturnedUserBook(user.ID, book.ID).ReturnDate = DateTime.Today;
+            MessageBox.Show("You have returned this book!");
+        }
     }
 }

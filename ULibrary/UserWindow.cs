@@ -65,10 +65,10 @@ namespace ULibrary
 
         private uint CalculateDebtOfBook(UserBook userbook)
         {
-                if (DateTime.Today.CompareTo(userbook.EndDate) > 0)
-                {
-                    return (uint)(DateTime.Today - userbook.EndDate).Days * 100;
-                }
+            if (DateTime.Today.CompareTo(userbook.EndDate) > 0)
+            {
+                return (uint)(DateTime.Today - userbook.EndDate).Days * 100;
+            }
             return 0;
         }
 
@@ -77,36 +77,42 @@ namespace ULibrary
             takenBooksGrid.Rows.Clear();
             foreach (var userbook in userbooks)
             {
-                    Book book = DB.GetBookByID(userbook.BookID);
+                Book book = DB.GetBookByID(userbook.BookID);
 
 
-                    var index = takenBooksGrid.Rows.Add(userbook.ID, book.Title, book.Author, userbook.StartDate.ToString("dd-MM-yyyy"), userbook.EndDate.ToString("dd-MM-yyyy"), CalculateDebtOfBook(userbook));
-                    var row = takenBooksGrid.Rows[index];
-                    if((DateTime.Today - userbook.EndDate).Days >= 0)
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                    }
-                    else if ((userbook.EndDate - DateTime.Today).Days <= 3)
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Yellow;
-                    }
+                var index = takenBooksGrid.Rows.Add(userbook.ID, book.Title, book.Author, userbook.StartDate.ToString("dd-MM-yyyy"), userbook.EndDate.ToString("dd-MM-yyyy"), CalculateDebtOfBook(userbook));
+                var row = takenBooksGrid.Rows[index];
+                if ((DateTime.Today - userbook.EndDate).Days >= 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+                else if ((userbook.EndDate - DateTime.Today).Days <= 3)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
             }
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var tb = sender as TabControl;
-            if(tb.SelectedTab == takenTab)
+            if (tb.SelectedTab == takenTab)
             {
                 addBooksToTakenBooksGrid(DB.GetNotReturnedUserBooks(user.ID));
             }
-            else if(tb.SelectedTab == booksTab)
+            else if (tb.SelectedTab == booksTab)
             {
                 addBooksToGrid(DB.GetAllBooks());
             }
             else if (tb.SelectedTab == historyTab)
             {
                 addBooksToHistoryGrid(DB.GetReturnedUserBooks(user.ID));
+            }
+            else if (tb.SelectedTab == paymentsTab)
+            {
+                money.Text = user.Money.ToString();
+                debt.Text = user.Debt.ToString();
+                updatePayments(user);
             }
         }
 
@@ -127,6 +133,73 @@ namespace ULibrary
             {
                 Book book = DB.GetBookByID(userbook.BookID);
                 historyGrid.Rows.Add(userbook.ID, book.Title, book.Author, userbook.StartDate.ToString("dd-MM-yyyy"), userbook.ReturnDate.Value.ToString("dd-MM-yyyy"));
+            }
+        }
+
+        private void updatePayments(User user)
+        {
+            money.Text = user.Money.ToString();
+            debt.Text = user.Debt.ToString();
+            payTextBox.Clear();
+            addTextBox.Clear();
+        }
+
+        private void payButton_Click(object sender, EventArgs e)
+        {
+            if (payTextBox.Text != null)
+            {
+                uint value;
+                if (uint.TryParse(payTextBox.Text, out value))
+                {
+                    if (user.Debt != UInt32.MinValue)
+                    {
+                        if (user.Money >= value)
+                        {
+                            user.Money -= value;
+                            user.Debt -= value;
+                            MessageBox.Show(string.Format("Thank you for your {0} payment!", value));
+                            updatePayments(user);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sorry, you don't have enough money in your account!");
+                            payTextBox.Clear();
+                        }
+                    }
+                    else
+                    {
+                        user.Debt = 0;
+                        MessageBox.Show("No Debt");
+                        updatePayments(user);
+                    }
+                }
+            }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (addTextBox.Text != null)
+            {
+                uint value;
+                if (uint.TryParse(addTextBox.Text, out value))
+                {
+                    user.Money += value;
+                    MessageBox.Show("Thank you, your account has been successfully added!");
+                    addTextBox.Clear();
+                    money.Text = user.Money.ToString();
+                }
+            }
+        }
+
+        private void payTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
             }
         }
     }
