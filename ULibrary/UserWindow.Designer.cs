@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.booksTab = new System.Windows.Forms.TabPage();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -80,9 +80,10 @@
             this.tabControl1.Controls.Add(this.paymentsTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(840, 476);
+            this.tabControl1.Size = new System.Drawing.Size(1260, 732);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -90,10 +91,11 @@
             // 
             this.booksTab.Controls.Add(this.SearchButton);
             this.booksTab.Controls.Add(this.booksGrid);
-            this.booksTab.Location = new System.Drawing.Point(4, 22);
+            this.booksTab.Location = new System.Drawing.Point(4, 29);
+            this.booksTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.booksTab.Name = "booksTab";
-            this.booksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.booksTab.Size = new System.Drawing.Size(832, 450);
+            this.booksTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.booksTab.Size = new System.Drawing.Size(1252, 699);
             this.booksTab.TabIndex = 0;
             this.booksTab.Text = "Books";
             this.booksTab.UseVisualStyleBackColor = true;
@@ -101,9 +103,10 @@
             // SearchButton
             // 
             this.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SearchButton.Location = new System.Drawing.Point(734, 6);
+            this.SearchButton.Location = new System.Drawing.Point(1101, 9);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(92, 24);
+            this.SearchButton.Size = new System.Drawing.Size(138, 37);
             this.SearchButton.TabIndex = 1;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -114,14 +117,14 @@
             this.booksGrid.AllowUserToAddRows = false;
             this.booksGrid.AllowUserToDeleteRows = false;
             this.booksGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.booksGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.booksGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.booksGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.booksGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -129,13 +132,14 @@
             this.authorColumn,
             this.genreColumn});
             this.booksGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.booksGrid.Location = new System.Drawing.Point(3, 3);
+            this.booksGrid.Location = new System.Drawing.Point(4, 5);
+            this.booksGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.booksGrid.MultiSelect = false;
             this.booksGrid.Name = "booksGrid";
             this.booksGrid.ReadOnly = true;
             this.booksGrid.RowHeadersVisible = false;
             this.booksGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.booksGrid.Size = new System.Drawing.Size(826, 444);
+            this.booksGrid.Size = new System.Drawing.Size(1244, 689);
             this.booksGrid.TabIndex = 0;
             this.booksGrid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.booksGrid_CellMouseDoubleClick);
             // 
@@ -152,7 +156,7 @@
             this.titleColumn.HeaderText = "Title";
             this.titleColumn.Name = "titleColumn";
             this.titleColumn.ReadOnly = true;
-            this.titleColumn.Width = 66;
+            this.titleColumn.Width = 97;
             // 
             // authorColumn
             // 
@@ -160,7 +164,7 @@
             this.authorColumn.HeaderText = "Author";
             this.authorColumn.Name = "authorColumn";
             this.authorColumn.ReadOnly = true;
-            this.authorColumn.Width = 83;
+            this.authorColumn.Width = 123;
             // 
             // genreColumn
             // 
@@ -172,10 +176,11 @@
             // takenTab
             // 
             this.takenTab.Controls.Add(this.takenBooksGrid);
-            this.takenTab.Location = new System.Drawing.Point(4, 22);
+            this.takenTab.Location = new System.Drawing.Point(4, 29);
+            this.takenTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.takenTab.Name = "takenTab";
-            this.takenTab.Padding = new System.Windows.Forms.Padding(3);
-            this.takenTab.Size = new System.Drawing.Size(832, 450);
+            this.takenTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.takenTab.Size = new System.Drawing.Size(1252, 699);
             this.takenTab.TabIndex = 1;
             this.takenTab.Text = "Taken Book";
             this.takenTab.UseVisualStyleBackColor = true;
@@ -184,14 +189,14 @@
             // 
             this.takenBooksGrid.AllowUserToAddRows = false;
             this.takenBooksGrid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.takenBooksGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.takenBooksGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.takenBooksGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.takenBooksGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.takenIDColumn,
@@ -201,14 +206,15 @@
             this.enddateColumn,
             this.debtColumn});
             this.takenBooksGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.takenBooksGrid.Location = new System.Drawing.Point(3, 3);
+            this.takenBooksGrid.Location = new System.Drawing.Point(4, 5);
+            this.takenBooksGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.takenBooksGrid.MultiSelect = false;
             this.takenBooksGrid.Name = "takenBooksGrid";
             this.takenBooksGrid.ReadOnly = true;
             this.takenBooksGrid.RowHeadersVisible = false;
             this.takenBooksGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.takenBooksGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.takenBooksGrid.Size = new System.Drawing.Size(826, 444);
+            this.takenBooksGrid.Size = new System.Drawing.Size(1244, 689);
             this.takenBooksGrid.TabIndex = 0;
             this.takenBooksGrid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.takenBooksGrid_CellMouseDoubleClick);
             // 
@@ -225,7 +231,7 @@
             this.takenTitleColumn.HeaderText = "Title";
             this.takenTitleColumn.Name = "takenTitleColumn";
             this.takenTitleColumn.ReadOnly = true;
-            this.takenTitleColumn.Width = 66;
+            this.takenTitleColumn.Width = 97;
             // 
             // takenAuthorColumn
             // 
@@ -233,7 +239,7 @@
             this.takenAuthorColumn.HeaderText = "Author";
             this.takenAuthorColumn.Name = "takenAuthorColumn";
             this.takenAuthorColumn.ReadOnly = true;
-            this.takenAuthorColumn.Width = 83;
+            this.takenAuthorColumn.Width = 123;
             // 
             // startdateColumn
             // 
@@ -241,7 +247,7 @@
             this.startdateColumn.HeaderText = "Start Date";
             this.startdateColumn.Name = "startdateColumn";
             this.startdateColumn.ReadOnly = true;
-            this.startdateColumn.Width = 102;
+            this.startdateColumn.Width = 149;
             // 
             // enddateColumn
             // 
@@ -249,7 +255,7 @@
             this.enddateColumn.HeaderText = "End Date";
             this.enddateColumn.Name = "enddateColumn";
             this.enddateColumn.ReadOnly = true;
-            this.enddateColumn.Width = 96;
+            this.enddateColumn.Width = 142;
             // 
             // debtColumn
             // 
@@ -261,9 +267,10 @@
             // historyTab
             // 
             this.historyTab.Controls.Add(this.historyGrid);
-            this.historyTab.Location = new System.Drawing.Point(4, 22);
+            this.historyTab.Location = new System.Drawing.Point(4, 29);
+            this.historyTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.historyTab.Name = "historyTab";
-            this.historyTab.Size = new System.Drawing.Size(832, 450);
+            this.historyTab.Size = new System.Drawing.Size(1252, 699);
             this.historyTab.TabIndex = 2;
             this.historyTab.Text = "History";
             this.historyTab.UseVisualStyleBackColor = true;
@@ -283,9 +290,10 @@
             this.hStartDate,
             this.hReturnDate});
             this.historyGrid.Location = new System.Drawing.Point(0, 0);
+            this.historyGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.historyGrid.Name = "historyGrid";
             this.historyGrid.RowHeadersVisible = false;
-            this.historyGrid.Size = new System.Drawing.Size(785, 313);
+            this.historyGrid.Size = new System.Drawing.Size(1178, 482);
             this.historyGrid.TabIndex = 0;
             // 
             // hID
@@ -329,34 +337,39 @@
             this.paymentsTab.Controls.Add(this.debtLab);
             this.paymentsTab.Controls.Add(this.money);
             this.paymentsTab.Controls.Add(this.moneyLab);
-            this.paymentsTab.Location = new System.Drawing.Point(4, 22);
+            this.paymentsTab.Location = new System.Drawing.Point(4, 29);
+            this.paymentsTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.paymentsTab.Name = "paymentsTab";
-            this.paymentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.paymentsTab.Size = new System.Drawing.Size(832, 450);
+            this.paymentsTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.paymentsTab.Size = new System.Drawing.Size(1252, 699);
             this.paymentsTab.TabIndex = 3;
             this.paymentsTab.Text = "Payments";
             this.paymentsTab.UseVisualStyleBackColor = true;
             // 
             // addTextBox
             // 
-            this.addTextBox.Location = new System.Drawing.Point(8, 128);
+            this.addTextBox.Location = new System.Drawing.Point(12, 197);
+            this.addTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addTextBox.Name = "addTextBox";
-            this.addTextBox.Size = new System.Drawing.Size(83, 20);
+            this.addTextBox.Size = new System.Drawing.Size(122, 26);
             this.addTextBox.TabIndex = 7;
+            this.addTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.addTextBox_KeyPress);
             // 
             // payTextBox
             // 
-            this.payTextBox.Location = new System.Drawing.Point(8, 88);
+            this.payTextBox.Location = new System.Drawing.Point(12, 135);
+            this.payTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.payTextBox.Name = "payTextBox";
-            this.payTextBox.Size = new System.Drawing.Size(83, 20);
+            this.payTextBox.Size = new System.Drawing.Size(122, 26);
             this.payTextBox.TabIndex = 6;
             this.payTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.payTextBox_KeyPress);
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(97, 126);
+            this.addButton.Location = new System.Drawing.Point(146, 194);
+            this.addButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(62, 23);
+            this.addButton.Size = new System.Drawing.Size(93, 35);
             this.addButton.TabIndex = 5;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
@@ -364,9 +377,10 @@
             // 
             // payButton
             // 
-            this.payButton.Location = new System.Drawing.Point(97, 86);
+            this.payButton.Location = new System.Drawing.Point(146, 132);
+            this.payButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.payButton.Name = "payButton";
-            this.payButton.Size = new System.Drawing.Size(62, 23);
+            this.payButton.Size = new System.Drawing.Size(93, 35);
             this.payButton.TabIndex = 4;
             this.payButton.Text = "Pay";
             this.payButton.UseVisualStyleBackColor = true;
@@ -375,45 +389,50 @@
             // debt
             // 
             this.debt.AutoSize = true;
-            this.debt.Location = new System.Drawing.Point(114, 49);
+            this.debt.Location = new System.Drawing.Point(171, 75);
+            this.debt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.debt.Name = "debt";
-            this.debt.Size = new System.Drawing.Size(13, 13);
+            this.debt.Size = new System.Drawing.Size(18, 20);
             this.debt.TabIndex = 3;
             this.debt.Text = "0";
             // 
             // debtLab
             // 
             this.debtLab.AutoSize = true;
-            this.debtLab.Location = new System.Drawing.Point(19, 49);
+            this.debtLab.Location = new System.Drawing.Point(28, 75);
+            this.debtLab.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.debtLab.Name = "debtLab";
-            this.debtLab.Size = new System.Drawing.Size(79, 13);
+            this.debtLab.Size = new System.Drawing.Size(118, 20);
             this.debtLab.TabIndex = 2;
             this.debtLab.Text = "Your total debt:";
             // 
             // money
             // 
             this.money.AutoSize = true;
-            this.money.Location = new System.Drawing.Point(114, 23);
+            this.money.Location = new System.Drawing.Point(171, 35);
+            this.money.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.money.Name = "money";
-            this.money.Size = new System.Drawing.Size(13, 13);
+            this.money.Size = new System.Drawing.Size(18, 20);
             this.money.TabIndex = 1;
             this.money.Text = "0";
             // 
             // moneyLab
             // 
             this.moneyLab.AutoSize = true;
-            this.moneyLab.Location = new System.Drawing.Point(19, 23);
+            this.moneyLab.Location = new System.Drawing.Point(28, 35);
+            this.moneyLab.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.moneyLab.Name = "moneyLab";
-            this.moneyLab.Size = new System.Drawing.Size(89, 13);
+            this.moneyLab.Size = new System.Drawing.Size(133, 20);
             this.moneyLab.TabIndex = 0;
             this.moneyLab.Text = "Your total money:";
             // 
             // UserWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 476);
+            this.ClientSize = new System.Drawing.Size(1260, 732);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UserWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ULibrary";

@@ -19,6 +19,7 @@ namespace ULibrary
             InitializeComponent();
             this.user = user;
             this.user.Debt = CalculateDebt(this.user);
+            this.user.Update();
             addBooksToGrid(DB.GetAllBooks());
         }
 
@@ -78,8 +79,6 @@ namespace ULibrary
             foreach (var userbook in userbooks)
             {
                 Book book = DB.GetBookByID(userbook.BookID);
-
-
                 var index = takenBooksGrid.Rows.Add(userbook.ID, book.Title, book.Author, userbook.StartDate.ToString("dd-MM-yyyy"), userbook.EndDate.ToString("dd-MM-yyyy"), CalculateDebtOfBook(userbook));
                 var row = takenBooksGrid.Rows[index];
                 if ((DateTime.Today - userbook.EndDate).Days >= 0)
@@ -151,12 +150,18 @@ namespace ULibrary
                 uint value;
                 if (uint.TryParse(payTextBox.Text, out value))
                 {
-                    if (user.Debt != UInt32.MinValue)
+                    if (user.Debt != UInt32.MinValue )
                     {
                         if (user.Money >= value)
                         {
                             user.Money -= value;
                             user.Debt -= value;
+                            if (DB.AddToDebt(user.Debt) == null)
+                            {
+                                MessageBox.Show("Something went wrong.", "Error");
+                                return;
+                            }
+                            user.Update();
                             MessageBox.Show(string.Format("Thank you for your {0} payment!", value));
                             updatePayments(user);
                         }
@@ -166,9 +171,12 @@ namespace ULibrary
                             payTextBox.Clear();
                         }
                     }
+                    else if(user.Debt < value)
+                    {
+                        MessageBox.Show("Please don't give us tipp");
+                    }
                     else
                     {
-                        user.Debt = 0;
                         MessageBox.Show("No Debt");
                         updatePayments(user);
                     }
@@ -184,7 +192,8 @@ namespace ULibrary
                 if (uint.TryParse(addTextBox.Text, out value))
                 {
                     user.Money += value;
-                    MessageBox.Show("Thank you, your account has been successfully added!");
+                    user.Update();
+                    MessageBox.Show("Thank you, the money has been successfully added!");
                     addTextBox.Clear();
                     money.Text = user.Money.ToString();
                 }
@@ -192,6 +201,18 @@ namespace ULibrary
         }
 
         private void payTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void addTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {

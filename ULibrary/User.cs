@@ -15,6 +15,7 @@ namespace ULibrary
         public string Type { get; set; }
         public uint Debt { get; set; }
         public uint Money { get; set; }
+        public uint Purchased { get; set; }
         private string _password;
         public string Password
         {

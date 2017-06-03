@@ -20,7 +20,7 @@ namespace ULibrary
         {
             if (db.IsConnect())
             {
-                string query = "SELECT id,FirstName,LastName,Username,Password,Type,Debt FROM users WHERE username=@username and password=@password";
+                string query = "SELECT * FROM users WHERE username=@username and password=@password";
                 using (var cmd = new MySqlCommand(query, db.Connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
@@ -29,7 +29,7 @@ namespace ULibrary
                     {
                         if (reader.Read())
                         {
-                            return new User((string)reader["FirstName"], (string)reader["LastName"], (string)reader["username"], (string)reader["password"], (string)reader["Type"], reader.GetInt32("id"), (uint)reader.GetInt32("Debt"));
+                            return new User((string)reader["FirstName"], (string)reader["LastName"], (string)reader["username"], (string)reader["password"], (string)reader["Type"], reader.GetInt32("id"), (uint)reader.GetInt32("Debt"), (uint)reader.GetInt32("Money"));
                         }
 
                     }
@@ -146,7 +146,7 @@ namespace ULibrary
                     {
                         if (reader.Read())
                         {
-                            return new User((string)reader["FirstName"], (string)reader["LastName"], (string)reader["Username"], (string)reader["Password"], (string)reader["Type"],reader.GetInt32(0), (uint)reader.GetInt32("Debt"));
+                            return new User((string)reader["FirstName"], (string)reader["LastName"], (string)reader["username"], (string)reader["password"], (string)reader["Type"], reader.GetInt32("id"), (uint)reader.GetInt32("Debt"), (uint)reader.GetInt32("Money"));
                         }
                     }
                 }
@@ -226,13 +226,14 @@ namespace ULibrary
         {
             if (db.IsConnect())
             {
-                string query = "UPDATE `users` SET FirstName=@firstname, LastName=@lastname, Type=@type, Debt=@debt WHERE id=@id";
+                string query = "UPDATE `users` SET FirstName=@firstname, LastName=@lastname, Type=@type, Debt=@debt, Money=@money WHERE id=@id";
                 using (var cmd = new MySqlCommand(query,db.Connection))
                 {
                     cmd.Parameters.AddWithValue("@firstname", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastname", user.LastName);
                     cmd.Parameters.AddWithValue("@type", user.Type);
                     cmd.Parameters.AddWithValue("@debt", user.Debt);
+                    cmd.Parameters.AddWithValue("@money", user.Money);
                     cmd.Parameters.AddWithValue("@id", user.ID);
                     if (cmd.ExecuteNonQuery() >= 1)
                         return true;
@@ -258,6 +259,40 @@ namespace ULibrary
                 }
             }
             return false;
+        }
+
+        public static uint? GetAllDebt()
+        {
+            if (db.IsConnect())
+            {
+                string query = "SELECT * FROM `configs` WHERE name='Debt'";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return (uint)reader.GetInt32("value");
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static uint? AddToDebt(uint debt)
+        {
+            if (db.IsConnect())
+            {
+                string query = "UPDATE `configs` SET value=value + @debt";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@debt", debt);
+                    if (cmd.ExecuteNonQuery() >= 1)
+                        return GetAllDebt();
+                }
+            }
+            return null;
         }
 
         private static string CalculateMD5Hash(string input)
