@@ -222,6 +222,44 @@ namespace ULibrary
             return null;
         }
 
+        public static List<UserBook> GetUserBooks()
+        {
+            if (db.IsConnect())
+            {
+                string query = "SELECT * FROM `user_books` ORDER BY `start_date` DESC";
+                List<UserBook> userbooks = new List<UserBook>();
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime? return_date = reader["return_date"] as DateTime?;
+                            userbooks.Add(new UserBook(reader.GetInt32("user_id"), reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date));
+                        }
+                    }
+                }
+                return userbooks;
+            }
+            return null;
+        }
+
+        public static int GetAllUsersDebt()
+        {
+            string query = "SELECT SUM(debt) AS debt FROM `users`";
+            using (var cmd = new MySqlCommand(query, db.Connection))
+            {
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if(reader.Read())
+                    {
+                        return reader.GetInt32("debt");
+                    }
+                }
+            }
+            return -1;
+        }
+
         public static bool UpdateUser(User user)
         {
             if (db.IsConnect())
@@ -293,6 +331,41 @@ namespace ULibrary
                 }
             }
             return null;
+        }
+
+        public static bool DeleteBookByID(int id)
+        {
+            if (db.IsConnect())
+            {
+                string query = "DELETE FROM `books` WHERE id=@id";
+                using (var cmd = new MySqlCommand(query,db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    if(cmd.ExecuteNonQuery() >= 1)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool AddBook(Book book)
+        {
+            if (db.IsConnect())
+            {
+                string query = "INSERT INTO `books`(title, author, genre, description) VALUES(@title, @author, @genre, @description)";
+                using (var cmd = new MySqlCommand(query,db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@title", book.Title);
+                    cmd.Parameters.AddWithValue("@author", book.Author);
+                    cmd.Parameters.AddWithValue("@genre", book.Genre);
+                    cmd.Parameters.AddWithValue("@description", book.Description);
+                    if (cmd.ExecuteNonQuery() >= 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private static string CalculateMD5Hash(string input)
