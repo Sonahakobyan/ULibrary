@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookWindow));
             this.label1 = new MetroFramework.Controls.MetroLabel();
             this.titleLabel = new MetroFramework.Controls.MetroLabel();
             this.Author = new MetroFramework.Controls.MetroLabel();
@@ -51,7 +52,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(166, 148);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.Size = new System.Drawing.Size(40, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Title: ";
             // 
@@ -60,7 +61,7 @@
             this.titleLabel.AutoSize = true;
             this.titleLabel.Location = new System.Drawing.Point(272, 148);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(35, 20);
+            this.titleLabel.Size = new System.Drawing.Size(30, 19);
             this.titleLabel.TabIndex = 1;
             this.titleLabel.Text = "text";
             // 
@@ -69,7 +70,7 @@
             this.Author.AutoSize = true;
             this.Author.Location = new System.Drawing.Point(166, 197);
             this.Author.Name = "Author";
-            this.Author.Size = new System.Drawing.Size(57, 20);
+            this.Author.Size = new System.Drawing.Size(49, 19);
             this.Author.TabIndex = 2;
             this.Author.Text = "Author";
             // 
@@ -78,7 +79,7 @@
             this.authorLabel.AutoSize = true;
             this.authorLabel.Location = new System.Drawing.Point(272, 197);
             this.authorLabel.Name = "authorLabel";
-            this.authorLabel.Size = new System.Drawing.Size(35, 20);
+            this.authorLabel.Size = new System.Drawing.Size(30, 19);
             this.authorLabel.TabIndex = 3;
             this.authorLabel.Text = "text";
             // 
@@ -87,7 +88,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(166, 243);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 20);
+            this.label2.Size = new System.Drawing.Size(44, 19);
             this.label2.TabIndex = 4;
             this.label2.Text = "Genre";
             // 
@@ -96,7 +97,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(542, 751);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 20);
+            this.label3.Size = new System.Drawing.Size(0, 0);
             this.label3.TabIndex = 5;
             // 
             // genreLabel
@@ -104,7 +105,7 @@
             this.genreLabel.AutoSize = true;
             this.genreLabel.Location = new System.Drawing.Point(272, 243);
             this.genreLabel.Name = "genreLabel";
-            this.genreLabel.Size = new System.Drawing.Size(51, 20);
+            this.genreLabel.Size = new System.Drawing.Size(44, 19);
             this.genreLabel.TabIndex = 6;
             this.genreLabel.Text = "label4";
             // 
@@ -113,7 +114,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(166, 285);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 20);
+            this.label4.Size = new System.Drawing.Size(74, 19);
             this.label4.TabIndex = 7;
             this.label4.Text = "Description";
             // 
@@ -122,7 +123,7 @@
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Location = new System.Drawing.Point(272, 285);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(51, 20);
+            this.descriptionLabel.Size = new System.Drawing.Size(44, 19);
             this.descriptionLabel.TabIndex = 8;
             this.descriptionLabel.Text = "label5";
             // 
@@ -134,7 +135,7 @@
             this.borrowButton.Size = new System.Drawing.Size(134, 43);
             this.borrowButton.TabIndex = 9;
             this.borrowButton.Text = "Borrow";
-            this.borrowButton.UseVisualStyleBackColor = true;
+            this.borrowButton.UseSelectable = true;
             this.borrowButton.Click += new System.EventHandler(this.borrowButton_Click);
             // 
             // debtLabel
@@ -142,7 +143,7 @@
             this.debtLabel.AutoSize = true;
             this.debtLabel.Location = new System.Drawing.Point(166, 365);
             this.debtLabel.Name = "debtLabel";
-            this.debtLabel.Size = new System.Drawing.Size(302, 20);
+            this.debtLabel.Size = new System.Drawing.Size(251, 19);
             this.debtLabel.TabIndex = 10;
             this.debtLabel.Text = "You have debt, please pay in BookHistory";
             // 
@@ -150,8 +151,9 @@
             // 
             this.end_dateTime.Location = new System.Drawing.Point(482, 355);
             this.end_dateTime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.end_dateTime.MinimumSize = new System.Drawing.Size(0, 29);
             this.end_dateTime.Name = "end_dateTime";
-            this.end_dateTime.Size = new System.Drawing.Size(298, 26);
+            this.end_dateTime.Size = new System.Drawing.Size(298, 29);
             this.end_dateTime.TabIndex = 11;
             this.end_dateTime.Visible = false;
             // 
@@ -164,7 +166,7 @@
             this.returnButton.Size = new System.Drawing.Size(134, 43);
             this.returnButton.TabIndex = 12;
             this.returnButton.Text = "Return";
-            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.UseSelectable = true;
             this.returnButton.Visible = false;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
@@ -192,6 +194,7 @@
             this.Controls.Add(this.Author);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "BookWindow";
             this.ShowIcon = false;

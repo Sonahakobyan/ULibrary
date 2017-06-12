@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignIn));
             this.tabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.signInTab = new MetroFramework.Controls.MetroTabPage();
             this.button1 = new MetroFramework.Controls.MetroButton();
@@ -143,7 +144,7 @@
             this.Password.MaxLength = 32767;
             this.Password.Name = "Password";
             this.Password.PasswordChar = '*';
-            this.Password.WaterMark = "Password";
+            this.Password.PromptText = "Password";
             this.Password.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.Password.SelectedText = "";
             this.Password.SelectionLength = 0;
@@ -177,7 +178,7 @@
             this.Username.MaxLength = 32767;
             this.Username.Name = "Username";
             this.Username.PasswordChar = '\0';
-            this.Username.WaterMark = "Username";
+            this.Username.PromptText = "Username";
             this.Username.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.Username.SelectedText = "";
             this.Username.SelectionLength = 0;
@@ -403,6 +404,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 513);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "SignIn";

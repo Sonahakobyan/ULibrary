@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchWindow));
             this.searchBox = new MetroFramework.Controls.MetroTextBox();
             this.radioTitle = new MetroFramework.Controls.MetroRadioButton();
             this.radioAuthor = new MetroFramework.Controls.MetroRadioButton();
@@ -148,6 +149,7 @@
             this.Controls.Add(this.radioAuthor);
             this.Controls.Add(this.radioTitle);
             this.Controls.Add(this.searchBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
