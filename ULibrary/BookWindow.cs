@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 
 namespace ULibrary
 {
-    public partial class BookWindow : Form
+    public partial class BookWindow : MetroForm
     {
         private User user;
         private Book book;

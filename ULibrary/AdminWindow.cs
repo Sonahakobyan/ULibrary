@@ -7,10 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Fonts;
 
 namespace ULibrary
 {
-    public partial class AdminWindow : Form
+    public partial class AdminWindow : MetroForm
     {
         private User user;
 

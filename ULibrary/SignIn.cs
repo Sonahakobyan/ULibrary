@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,10 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
+using MetroFramework;
 
 namespace ULibrary
 {
-    public partial class SignIn : Form
+    public partial class SignIn : MetroForm
     {
         public SignIn()
         {
@@ -23,7 +26,7 @@ namespace ULibrary
             if(user != null)
             {
                 
-                MessageBox.Show(string.Format("Hello {0} {1}", user.FirstName, user.LastName), "Successfull", MessageBoxButtons.OK);
+                MetroMessageBox.Show(this, string.Format("Hello {0} {1}", user.FirstName, user.LastName), "Successfull", MessageBoxButtons.OK);
                 if((string)user.Type == "Admin")
                 {
                     AdminWindow win = new AdminWindow(user);
@@ -41,7 +44,7 @@ namespace ULibrary
             }
             else
             {
-                MessageBox.Show("Username or Password is incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, "Username or Password is incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Username.Clear();
                 Password.Clear();
             }
@@ -62,6 +65,11 @@ namespace ULibrary
                 MessageBox.Show("Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 signUpPassword.Clear();
             }
+        }
+
+        private void SignIn_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DB.Close();
         }
     }
 }
