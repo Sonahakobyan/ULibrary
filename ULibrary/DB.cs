@@ -168,7 +168,7 @@ namespace ULibrary
                         if (reader.Read())
                         {
                             DateTime? return_date = reader["return_date"] as DateTime?;
-                            return new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date);
+                            return new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date, (int)reader.GetInt32("id"));
                         }
                     }
                 }
@@ -190,7 +190,7 @@ namespace ULibrary
                         while (reader.Read())
                         {
                             DateTime? return_date = reader["return_date"] as DateTime?;
-                            userbooks.Add(new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date));
+                            userbooks.Add(new UserBook((int)reader.GetInt32("user_id"), (int)reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date, (int)reader.GetInt32("id")));
                         }
                     }
                 }
@@ -235,7 +235,7 @@ namespace ULibrary
                         while (reader.Read())
                         {
                             DateTime? return_date = reader["return_date"] as DateTime?;
-                            userbooks.Add(new UserBook(reader.GetInt32("user_id"), reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date));
+                            userbooks.Add(new UserBook(reader.GetInt32("user_id"), reader.GetInt32("book_id"), (DateTime)reader["start_date"], (DateTime)reader["end_date"], return_date, (int)reader.GetInt32("id")));
                         }
                     }
                 }
@@ -292,6 +292,22 @@ namespace ULibrary
                     cmd.Parameters.AddWithValue("@BookID", book.BookID);
                     cmd.Parameters.AddWithValue("@StartDate", book.StartDate);
                     cmd.Parameters.AddWithValue("@EndDate", book.EndDate);
+                    if (cmd.ExecuteNonQuery() >= 1)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool returnBook(UserBook book)
+        {
+            if (db.IsConnect())
+            {
+                string query = "UPDATE `user_books` SET return_date=@ReturnDate WHERE id=@id ";
+                using (var cmd = new MySqlCommand(query, db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", book.ID);
+                    cmd.Parameters.AddWithValue("@ReturnDate", DateTime.Today);
                     if (cmd.ExecuteNonQuery() >= 1)
                         return true;
                 }

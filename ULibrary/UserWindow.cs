@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using MetroFramework;
 
 namespace ULibrary
 {
@@ -124,6 +125,7 @@ namespace ULibrary
                 var book = DB.GetBookByID(id);
                 BookWindow bwin = new BookWindow(user, book);
                 bwin.ShowDialog();
+                addBooksToTakenBooksGrid(DB.GetNotReturnedUserBooks(user.ID));
             }
         }
         private void addBooksToHistoryGrid(List<UserBook> userbooks)
@@ -151,34 +153,36 @@ namespace ULibrary
                 uint value;
                 if (uint.TryParse(payTextBox.Text, out value))
                 {
-                    if (user.Debt != UInt32.MinValue )
+                    if (user.Debt < value)
+                    {
+                        MetroMessageBox.Show(this, "Please don't give us tipp");
+                        return;
+                    }
+                    else  if (user.Debt != UInt32.MinValue )
                     {
                         if (user.Money >= value)
                         {
-                            user.Money -= value;
-                            user.Debt -= value;
                             if (DB.AddToDebt(value) == null)
                             {
-                                MessageBox.Show("Something went wrong.", "Error");
+                                MetroMessageBox.Show(this, "Something went wrong.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
+                            user.Money -= value;
+                            user.Debt -= value;
                             user.Update();
-                            MessageBox.Show(string.Format("Thank you for your {0} payment!", value));
+                            MetroMessageBox.Show(this, string.Format("Thank you for your {0} payment!", value), "Thank You!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             updatePayments(user);
                         }
                         else
                         {
-                            MessageBox.Show("Sorry, you don't have enough money in your account!");
+                            MetroMessageBox.Show(this, "Sorry, you don't have enough money in your account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             payTextBox.Clear();
                         }
                     }
-                    else if(user.Debt < value)
-                    {
-                        MessageBox.Show("Please don't give us tipp");
-                    }
+                    
                     else
                     {
-                        MessageBox.Show("No Debt");
+                        MetroMessageBox.Show(this, "No Debt");
                         updatePayments(user);
                     }
                 }
@@ -194,7 +198,7 @@ namespace ULibrary
                 {
                     user.Money += value;
                     user.Update();
-                    MessageBox.Show("Thank you, the money has been successfully added!");
+                    MetroMessageBox.Show(this, "Thank you, the money has been successfully added!");
                     addTextBox.Clear();
                     money.Text = user.Money.ToString();
                 }

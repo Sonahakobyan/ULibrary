@@ -52,12 +52,12 @@ namespace ULibrary
             {
                 if(DB.DeleteBookByID((int)send.Rows[e.RowIndex].Cells["idColumn"].Value))
                 {
-                    MessageBox.Show("Book Deleted Successfully");
+                    MetroMessageBox.Show(this, "Book Deleted Successfully");
                     addBooksToGrid(DB.GetAllBooks());
                 }
                 else
                 {
-                    MessageBox.Show("Cannot Delete Book, something went wrong.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Cannot Delete Book, something went wrong.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -66,17 +66,17 @@ namespace ULibrary
         {
             if (titleText.Text == "" || authorText.Text == "" || genreText.Text == "" || descriptionText.Text == "")
             {
-                MessageBox.Show("Please fill in all fields.");
+                MetroMessageBox.Show(this, "Please fill in all fields.");
                 return;
             }
             Book book = new Book(titleText.Text, authorText.Text, genreText.Text, description:descriptionText.Text);
             if (DB.AddBook(book))
             {
-                MessageBox.Show("Book Added Successfully!");
+                MetroMessageBox.Show(this, "Book Added Successfully!");
                 addBooksToGrid(DB.GetAllBooks());
             }
             else
-                MessageBox.Show("Cannot Add Book, something went wrong.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, "Cannot Add Book, something went wrong.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-
+using MetroFramework;
 
 namespace ULibrary
 {
@@ -59,16 +59,23 @@ namespace ULibrary
             if (DB.BorrowBook(book))
             {
                 this.borrowButton.Enabled = false;
-                MessageBox.Show("You have borrowed this book!");
+                MetroMessageBox.Show(this, "You have borrowed this book!");
             }
             else
-                MessageBox.Show("Error!");
+                MetroMessageBox.Show(this, "Error!");
         }
 
         private void returnButton_Click(object sender, EventArgs e)
         {
-            DB.GetNotReturnedUserBook(user.ID, book.ID).ReturnDate = DateTime.Today;
-            MessageBox.Show("You have returned this book!");
+            var userbook = DB.GetNotReturnedUserBook(user.ID, book.ID);
+            if(DB.returnBook(userbook))
+            {
+                MetroMessageBox.Show(this, "You have returned this book!");
+            }
+            else
+            {
+                MetroMessageBox.Show(this, "Something Went Wrong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

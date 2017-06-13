@@ -137,7 +137,6 @@
             this.Password.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.Password.CustomButton.UseSelectable = true;
             this.Password.CustomButton.Visible = false;
-            this.Password.FontSize = MetroFramework.MetroTextBoxSize.Tall;
             this.Password.Lines = new string[0];
             this.Password.Location = new System.Drawing.Point(192, 91);
             this.Password.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -171,7 +170,6 @@
             this.Username.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.Username.CustomButton.UseSelectable = true;
             this.Username.CustomButton.Visible = false;
-            this.Username.FontSize = MetroFramework.MetroTextBoxSize.Tall;
             this.Username.Lines = new string[0];
             this.Username.Location = new System.Drawing.Point(192, 25);
             this.Username.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
